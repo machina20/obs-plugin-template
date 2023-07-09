@@ -1,17 +1,17 @@
 cmake_minimum_required(VERSION 3.16...3.26)
 
-include("${CMAKE_CURRENT_SOURCE_DIR}/cmake/common/bootstrap.cmake" NO_POLICY_SCOPE)
+include("${CMAKE_CURRENT_SOURCE_DIR}/cmake/common/bootstrap.cmake" NO_POLICY_SCOPE)  #include the other cmake file
 
-project(${_name} VERSION ${_version})
+project(${_name} VERSION ${_version})  #specifying the project name using _name and _version variables from elsewhere
 
-option(ENABLE_FRONTEND_API "Use obs-frontend-api for UI functionality" OFF)
-option(ENABLE_QT "Use Qt functionality" OFF)
+option(ENABLE_FRONTEND_API "Use obs-frontend-api for UI functionality" OFF) #setting custom var for enabling frontend api
+option(ENABLE_QT "Use Qt functionality" OFF) # setting custom var for use Qt functionality
 
 include(compilerconfig)
 include(defaults)
 include(helpers)
 
-add_library(${CMAKE_PROJECT_NAME} MODULE)
+add_library(${CMAKE_PROJECT_NAME} MODULE) #adds a library of type module: dynamically loadable module.
 
 find_package(libobs REQUIRED)
 target_link_libraries(${CMAKE_PROJECT_NAME} PRIVATE OBS::libobs)
