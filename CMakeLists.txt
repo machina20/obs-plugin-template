@@ -1,7 +1,5 @@
 cmake_minimum_required(VERSION 3.16...3.26) #set the version of the target "VERSION" is used as a keyword to indicate that the following argument is specifying the version number.
 
-
-
 include("${CMAKE_CURRENT_SOURCE_DIR}/cmake/common/bootstrap.cmake" NO_POLICY_SCOPE)  #include the other cmake file
 #NO_POLICY_SCOPE:it means that the included script's policies will not affect the policies defined in the current CMakeLists.txt file. This is useful when you want to isolate the policy settings of the included script.
 
@@ -42,7 +40,8 @@ target_sources(${CMAKE_PROJECT_NAME} PRIVATE src/plugin-main.c) #Specifies sourc
 
 set_target_properties_plugin(${CMAKE_PROJECT_NAME} PROPERTIES OUTPUT_NAME ${_name})
 
+# set_target_properties(${CMAKE_PROJECT_NAME} PROPERTIES  ON) #adding the -fPIC compiler flags
+# target_compile_options(${CMAKE_PROJECT_NAME} PRIVATE -fPIC)
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fPIC -g") #language wide flags passed to all invocations of the compiler
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC -g")
 
-#set_target_properties(${CMAKE_PROJECT_NAME PROPERTIES })
